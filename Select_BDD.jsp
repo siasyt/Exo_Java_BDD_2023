@@ -39,17 +39,41 @@
         pstmtExercice1.close();
         
         // Exercice 2 : Année de recherche
+        if (request.getMethod().equalsIgnoreCase("post")) {
+            String anneeRecherche = request.getParameter("annee");
+
+            if (anneeRecherche != null && !anneeRecherche.isEmpty()) {
+                int anneeInt = Integer.parseInt(anneeRecherche);
+
+                // Execute the query
+                String sqlExercice2 = "SELECT idFilm, titre, année FROM Film WHERE année = ?";
+                PreparedStatement pstmtExercice2 = conn.prepareStatement(sqlExercice2);
+                pstmtExercice2.setInt(1, anneeInt);
+                ResultSet rsExercice2 = pstmtExercice2.executeQuery();
+
+                out.println("<h2>Résultats de la recherche pour l'année " + anneeRecherche + "</h2>");
+
+                while (rsExercice2.next()) {
+                    String colonne1 = rsExercice2.getString("idFilm");
+                    String colonne2 = rsExercice2.getString("titre");
+                    String colonne3 = rsExercice2.getString("année");
+                    out.println("id : " + colonne1 + ", titre : " + colonne2 + ", année : " + colonne3 + "</br>");
+                }
+
+                rsExercice2.close();
+                pstmtExercice2.close();
+            }
+        }
     %>
+
     <form action="" method="post">
         <label for="annee">Année de recherche :</label>
         <input type="text" id="annee" name="annee" required>
         <button type="submit">Rechercher</button>
     </form>
 
-    <% 
-        // Exercice 3 : Modification du titre du film
-    %>
-    <form action="" method="post">
+    <!-- Exercice 3 : Modification du titre du film -->
+    <form action="modification.jsp" method="post">
         <label for="filmId">ID du film à modifier :</label>
         <input type="text" id="filmId" name="filmId" required>
         <label for="nouveauTitre">Nouveau titre :</label>
@@ -57,10 +81,8 @@
         <button type="submit">Modifier</button>
     </form>
 
-    <% 
-        // Exercice 4 : La valeur maximum
-    %>
-    <form action="" method="post">
+    <!-- Exercice 4 : La valeur maximum -->
+    <form action="ajout.jsp" method="post">
         <label for="nouveauTitre">Titre du nouveau film :</label>
         <input type="text" id="nouveauTitre" name="nouveauTitre" required>
         <label for="nouvelleAnnee">Année du nouveau film :</label>
@@ -68,12 +90,13 @@
         <button type="submit">Ajouter</button>
     </form>
 
-    <% 
+    <%
         // Fermer la connexion
         conn.close();
     %>
 </body>
 </html>
+
 
 
 
