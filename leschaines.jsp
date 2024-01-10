@@ -35,6 +35,16 @@
 <h2>Exercice 1 : Combien de 'e' dans notre chaine de charactère ?</h2>
 <p>Ecrire un programme pour compter le nombre de lettre e dans votre chaine de charactères</p>
 
+<h2> Réponse </h2>
+<% int countE = 0;
+   for (int i = 0; i < chaine.length(); i++) {
+       char currentChar = Character.toLowerCase(chaine.charAt(i));
+       if (currentChar == 'e') {
+           countE++;
+       }
+   }
+%>
+
 <h2>Exercice 2 : Affichage verticale</h2>
 <p>Ecrire le programme pour afficher le texte en vertical</br>
 Exemple : Bonjour</br>
@@ -46,6 +56,11 @@ o</br>
 u</br>
 r</p>
 
+<h2>Réponse</h2>
+<% for (int i = 0; i < chaine.length(); i++) { %>
+    <p><%= chaine.charAt(i) %></p>
+<% } %>
+
 <h2>Exercice 3 : Retour à la ligne</h2>
 <p>La présence d'un espace provoque un retour à la ligne </br>
 Exemple : L'hiver sera pluvieux</br>
@@ -53,18 +68,50 @@ L'hiver</br>
 sera</br>
 pluvieux</p>
 
+<h2>Réponse</h2>
+<% for (int i = 0; i < chaine.length(); i++) {
+     char currentChar = chaine.charAt(i);
+     if (currentChar == ' ') { %>
+        <br>
+     <% } else { %>
+        <%= currentChar %>
+     <% }
+} %>
+
 <h2>Exercice 4 : Afficher une lettre sur deux</h2>
 <p>Ecrire le programme pour afficher seulement une lettre sur deux de votre texte </br>
 Exemple : L'hiver sera pluvieux</br>
 Lhvrsr lvex</p>
+
+<h2> Réponse </h2>
+<% for (int i = 0; i < chaine.length(); i += 2) { %>
+    <%= chaine.charAt(i) %>
+<% } %>
 
 <h2>Exercice 5 : La phrase en verlant</h2>
 <p>Ecrire le programme afin d'afficher le texte en verlant </br>
 Exemple : L'hiver sera pluvieux</br>
 xueivulp ares revih'l</p>
 
+<h2> Réponse </h2>
+<% for (int i = chaine.length() - 1; i >= 0; i--) { %>
+    <%= chaine.charAt(i) %>
+<% } %>
+
 <h2>Exercice 6 : Consonnes et voyelles</h2>
 <p>Ecrire le programme afin de compter les consonnes et les voyelles dans votre texte</p>
+
+<h2> Réponse </h2>
+<% for (int i = 0; i < chaine.length(); i++) {
+     char currentChar = Character.toLowerCase(chaine.charAt(i));
+     if (Character.isLetter(currentChar)) {
+        if (currentChar == 'a' || currentChar == 'e' || currentChar == 'i' || currentChar == 'o' || currentChar == 'u' || currentChar == 'y') {
+            nbVoyelles++;
+        } else {
+            nbConsonnes++;
+        }
+     }
+} %>
 
 <% } %>
 <p><a href="index.html">Retour au sommaire</a></p>
