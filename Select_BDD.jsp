@@ -120,7 +120,17 @@
         <label for="nouveauTitreExercice4">Titre du nouveau film :</label>
         <input type="text" id="nouveauTitreExercice4" name="nouveauTitreExercice4" required>
         <label for="nouvelleAnneeExercice4">Année du nouveau film :</label>
-        <input type="text" id="nouvelleAnneeEx
+        <input type="text" id="nouvelleAnneeExercice4" name="nouvelleAnneeExercice4" required>
+        <button type="submit" name="action" value="ajouterFilm">Ajouter</button>
+    </form>
+
+    <%
+        // Fermer la connexion
+        conn.close();
+    %>
+</body>
+</html>
+
 
 
 
