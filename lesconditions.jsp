@@ -1,16 +1,18 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html>
 <head>
-<title>les conditions</title>
+    <title>les conditions</title>
 </head>
 <body bgcolor=white>
-<h1>Exercices sur les conditions</h1>
-<form action="#" method="post">
-    <p>Saisir la valeur 1 : <input type="text" id="inputValeur" name="valeur1">
-    <p>Saisir la valeur 2 : <input type="text" id="inputValeur" name="valeur2">
-    <p><input type="submit" value="Afficher">
-</form>
-<%-- Récupération des valeurs --%>
+    <h1>Exercices sur les conditions</h1>
+
+    <form action="#" method="post">
+        <p>Saisir la valeur 1 : <input type="text" id="inputValeur" name="valeur1"></p>
+        <p>Saisir la valeur 2 : <input type="text" id="inputValeur" name="valeur2"></p>
+        <p><input type="submit" value="Afficher"></p>
+    </form>
+
+    <%-- Récupération des valeurs --%>
     <% String valeur1 = request.getParameter("valeur1"); %>
     <% String valeur2 = request.getParameter("valeur2"); %>
 
@@ -28,55 +30,60 @@
         <% } else { %>
             <p>Valeur 1 est égale à Valeur 2.</p>
         <% } %>
-   
+    <% } %>
     
-<h2>Exercice 1 : Comparaison 1</h2>
-<p>Ecrire un programme qui demande à l'utilisateur de saisir 3 valeurs (des chiffres),</br>
-A, B et C et dites nous si la valeur de C est comprise entre A et B.</br>
-Exemple :</br>
-A = 10</br>
-B = 20</br>
-C = 15</br>
-Oui C est compris entre A et B</p>
+    <h2>Exercice 1 : Comparaison 1</h2>
+    <form action="#" method="post">
+        <p>Saisir la valeur A : <input type="text" id="inputValeurA" name="valeurA"></p>
+        <p>Saisir la valeur B : <input type="text" id="inputValeurB" name="valeurB"></p>
+        <p>Saisir la valeur C : <input type="text" id="inputValeurC" name="valeurC"></p>
+        <p><input type="submit" value="Afficher"></p>
+    </form>
 
-<%-- Récupération des valeurs --%>
-    <% String valeur1 = request.getParameter("valeur1"); %>
-    <% String valeur2 = request.getParameter("valeur2"); %>
-    <% String valeur3 = request.getParameter("valeur3"); %>
+    <%-- Récupération des valeurs --%>
+    <% String valeurA = request.getParameter("valeurA"); %>
+    <% String valeurB = request.getParameter("valeurB"); %>
+    <% String valeurC = request.getParameter("valeurC"); %>
 
-    <%-- Vérification de la condition entre les deux valeurs --%>
-    <% if (valeur1 != null && valeur2 != null) { %>
+    <%-- Vérification de la condition entre les trois valeurs --%>
+    <% if (valeurA != null && valeurB != null && valeurC != null) { %>
         <%-- Conversion des valeurs en entiers pour la comparaison --%>
-        <% int V1 = Integer.parseInt(valeur1); %>
-        <% int V2 = Integer.parseInt(valeur2); %>
-        <% int V3 = Integer.parseInt(valeur3); %>
+        <% int intValeurA = Integer.parseInt(valeurA); %>
+        <% int intValeurB = Integer.parseInt(valeurB); %>
+        <% int intValeurC = Integer.parseInt(valeurC); %>
 
-<%    
-    if( V3>V1 && V3<V2){
-out.println("<br>");
-out.println("<br>");
-    out.print("Le nombre C est compris entre A et B");
-}else{
-out.println("<br>");
-out.println("<br>");
-    out.print("Le nombre C n'est pas compris entre A et B gnegnegne");
-}
-%>
+        <%-- Condition if pour vérifier si la valeur de C est comprise entre A et B --%>
+        <% if (intValeurC >= intValeurA && intValeurC <= intValeurB) { %>
+            <p>Oui, C est compris entre A et B.</p>
+        <% } else if (intValeurC >= intValeurB && intValeurC <= intValeurA) { %>
+            <p>Oui, C est compris entre A et B.</p>
+        <% } else { %>
+            <p>Non, C n'est pas compris entre A et B.</p>
+        <% } %>
+    <% } %>
 
-<h2>Exercice 2 : Pair ou Impair ?</h2>
-<p>Écrivez un programme pour vérifier si un nombre est pair ou impair en utilisant une structure if</p>
+    <h2>Exercice 2 : Pair ou Impair ?</h2>
+    <form action="#" method="post">
+        <p>Saisir une valeur : <input type="text" id="inputNombre" name="nombre"></p>
+        <p><input type="submit" value="Afficher"></p>
+    </form>
 
-<%
-if(V3%2==0){
-    out.println("<br>");
-    out.println("<Le nombre est paire");
-}else{
-    out.println("<br>");
-    out.println("le nombre est impaire");
-}
-%>
-<% } %>
+    <%-- Récupération de la valeur --%>
+    <% String nombre = request.getParameter("nombre"); %>
 
-<p><a href="index.html">Retour au sommaire</a></p>
+    <%-- Vérification de la parité de la valeur --%>
+    <% if (nombre != null) { %>
+        <%-- Conversion de la valeur en entier pour la vérification --%>
+        <% int intNombre = Integer.parseInt(nombre); %>
+
+        <%-- Condition if pour vérifier si le nombre est pair ou impair --%>
+        <% if (intNombre % 2 == 0) { %>
+            <p>Le nombre saisi est pair.</p>
+        <% } else { %>
+            <p>Le nombre saisi est impair.</p>
+        <% } %>
+    <% } %>
+
+    <p><a href="index.html">Retour au sommaire</a></p>
 </body>
 </html>
