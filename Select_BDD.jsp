@@ -34,10 +34,9 @@
         out.println("id : " + colonne1 + ", titre : " + colonne2 + ", année : " + colonne3 + "</br>");
     }
 
-    // Fermer les ressources 
-    rs.close();
-    pstmt.close();
-    conn.close();
+    catch (SQLException e) {
+        e.printStackTrace();
+    }
     %>
 
     <h2>Exercice 1 : Les films entre 2000 et 2015</h2>
