@@ -74,69 +74,54 @@
         }
     %>
 
-<!-- Exercice 3 : Modification du titre du film -->
-<h2>Exercice 3 : Modification du titre du film</h2>
-<form action="index.jsp" method="post">
-    <label for="filmId">ID du film à modifier :</label>
-    <input type="text" id="filmId" name="filmId" required>
-    <label for="nouveauTitre">Nouveau titre :</label>
-    <input type="text" id="nouveauTitre" name="nouveauTitre" required>
-    <button type="submit" name="action" value="modifierTitre">Modifier le titre</button>
-</form>
-
-<%
-    String url = "jdbc:mariadb://localhost:3306/films";
-    String user = "mysql";
-    String password = "mysql";
-
-    // Check if the form is submitted for modifying the title
-    if (request.getMethod().equalsIgnoreCase("post") && request.getParameter("action") != null) {
-        String action = request.getParameter("action");
-
-        if (action.equals("modifierTitre")) {
-            try {
-                String filmId = request.getParameter("filmId");
-                String nouveauTitre = request.getParameter("nouveauTitre");
-
-                Connection conn = DriverManager.getConnection(url, user, password);
-
-                // Exécutez la mise à jour du titre du film
-                String sql = "UPDATE Film SET titre = ? WHERE idFilm = ?";
-                PreparedStatement pstmt = conn.prepareStatement(sql);
-                pstmt.setString(1, nouveauTitre);
-                pstmt.setString(2, filmId);
-                int rowsAffected = pstmt.executeUpdate();
-
-                if (rowsAffected > 0) {
-                    out.println("<p>Le titre du film a été modifié avec succès.</p>");
-                } else {
-                    out.println("<p>Erreur : Aucun film trouvé avec l'ID spécifié.</p>");
-                }
-
-                pstmt.close();
-                conn.close();
-            } catch (Exception e) {
-                out.println("<p>Erreur : " + e.getMessage() + "</p>");
-            }
-        }
-    }
-%>
-
-    <!-- Exercice 4 : La valeur maximum -->
-    <form action="ajout.jsp" method="post">
-        <label for="nouveauTitre">Titre du nouveau film :</label>
+    <!-- Exercice 3 : Modification du titre du film -->
+    <h2>Exercice 3 : Modification du titre du film</h2>
+    <form action="" method="post">
+        <label for="filmId">ID du film à modifier :</label>
+        <input type="text" id="filmId" name="filmId" required>
+        <label for="nouveauTitre">Nouveau titre :</label>
         <input type="text" id="nouveauTitre" name="nouveauTitre" required>
-        <label for="nouvelleAnnee">Année du nouveau film :</label>
-        <input type="text" id="nouvelleAnnee" name="nouvelleAnnee" required>
-        <button type="submit">Ajouter</button>
+        <button type="submit" name="action" value="modifierTitre">Modifier le titre</button>
     </form>
 
     <%
-        // Fermer la connexion
-        conn.close();
+        // Check if the form is submitted for modifying the title
+        if (request.getMethod().equalsIgnoreCase("post") && request.getParameter("action") != null) {
+            String action = request.getParameter("action");
+
+            if (action.equals("modifierTitre")) {
+                try {
+                    String filmId = request.getParameter("filmId");
+                    String nouveauTitre = request.getParameter("nouveauTitre");
+
+                    // Exécutez la mise à jour du titre du film
+                    String sql = "UPDATE Film SET titre = ? WHERE idFilm = ?";
+                    PreparedStatement pstmt = conn.prepareStatement(sql);
+                    pstmt.setString(1, nouveauTitre);
+                    pstmt.setString(2, filmId);
+                    int rowsAffected = pstmt.executeUpdate();
+
+                    if (rowsAffected > 0) {
+                        out.println("<p>Le titre du film a été modifié avec succès.</p>");
+                    } else {
+                        out.println("<p>Erreur : Aucun film trouvé avec l'ID spécifié.</p>");
+                    }
+
+                    pstmt.close();
+                } catch (Exception e) {
+                    out.println("<p>Erreur : " + e.getMessage() + "</p>");
+                }
+            }
+        }
     %>
-</body>
-</html>
+
+    <!-- Exercice 4 : La valeur maximum -->
+    <form action="ajout.jsp" method="post">
+        <label for="nouveauTitreExercice4">Titre du nouveau film :</label>
+        <input type="text" id="nouveauTitreExercice4" name="nouveauTitreExercice4" required>
+        <label for="nouvelleAnneeExercice4">Année du nouveau film :</label>
+        <input type="text" id="nouvelleAnneeEx
+
 
 
 
