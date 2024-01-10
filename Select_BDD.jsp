@@ -37,7 +37,15 @@
 
         rsExercice1.close();
         pstmtExercice1.close();
-        
+    %>
+
+    <form action="" method="post">
+        <label for="annee">Année de recherche :</label>
+        <input type="text" id="annee" name="annee" required>
+        <button type="submit">Rechercher</button>
+    </form>
+
+    <% 
         // Exercice 2 : Année de recherche
         if (request.getMethod().equalsIgnoreCase("post")) {
             String anneeRecherche = request.getParameter("annee");
@@ -66,12 +74,6 @@
         }
     %>
 
-    <form action="" method="post">
-        <label for="annee">Année de recherche :</label>
-        <input type="text" id="annee" name="annee" required>
-        <button type="submit">Rechercher</button>
-    </form>
-
     <!-- Exercice 3 : Modification du titre du film -->
     <form action="modification.jsp" method="post">
         <label for="filmId">ID du film à modifier :</label>
@@ -86,7 +88,16 @@
         <label for="nouveauTitre">Titre du nouveau film :</label>
         <input type="text" id="nouveauTitre" name="nouveauTitre" required>
         <label for="nouvelleAnnee">Année du nouveau film :</label>
-        <input type="text" id="nouvelle
+        <input type="text" id="nouvelleAnnee" name="nouvelleAnnee" required>
+        <button type="submit">Ajouter</button>
+    </form>
+
+    <%
+        // Fermer la connexion
+        conn.close();
+    %>
+</body>
+</html>
 
 
 
