@@ -32,10 +32,10 @@
     <p>Votre premier "e" est en : <%= position %></p>
 
     
-<h2>Exercice 1 : Combien de 'e' dans notre chaine de charactère ?</h2>
-<p>Ecrire un programme pour compter le nombre de lettre e dans votre chaine de charactères</p>
+<h2>Exercice 1 : Combien de 'e' dans notre chaîne de caractères ?</h2>
+<p>Ecrire un programme pour compter le nombre de lettres 'e' (minuscules ou majuscules) dans votre chaîne de caractères</p>
 
-<h2> Réponse </h2>
+<h2>Exercice 1 : Réponse </h2>
 <% int countE = 0;
    for (int i = 0; i < chaine.length(); i++) {
        char currentChar = Character.toLowerCase(chaine.charAt(i));
@@ -45,7 +45,9 @@
    }
 %>
 
-<h2>Exercice 2 : Affichage verticale</h2>
+<p>Le nombre de lettres 'e' dans votre chaîne est : <%= countE %></p>
+
+<h2>Exercice 2 : Affichage vertical</h2>
 <p>Ecrire le programme pour afficher le texte en vertical</br>
 Exemple : Bonjour</br>
 B</br>
@@ -56,7 +58,8 @@ o</br>
 u</br>
 r</p>
 
-<h2>Réponse</h2>
+<h2>Exercice 2 : Réponse </h2>
+
 <% for (int i = 0; i < chaine.length(); i++) { %>
     <p><%= chaine.charAt(i) %></p>
 <% } %>
@@ -68,7 +71,8 @@ L'hiver</br>
 sera</br>
 pluvieux</p>
 
-<h2>Réponse</h2>
+<h2>Exercice 3 : Réponse </h2>
+
 <% for (int i = 0; i < chaine.length(); i++) {
      char currentChar = chaine.charAt(i);
      if (currentChar == ' ') { %>
@@ -83,17 +87,20 @@ pluvieux</p>
 Exemple : L'hiver sera pluvieux</br>
 Lhvrsr lvex</p>
 
-<h2> Réponse </h2>
+<h2>Exercice 4 : Réponse </h2>
+
+
 <% for (int i = 0; i < chaine.length(); i += 2) { %>
     <%= chaine.charAt(i) %>
 <% } %>
 
-<h2>Exercice 5 : La phrase en verlant</h2>
-<p>Ecrire le programme afin d'afficher le texte en verlant </br>
+<h2>Exercice 5 : La phrase en verlan</h2>
+<p>Ecrire le programme afin d'afficher le texte en verlan </br>
 Exemple : L'hiver sera pluvieux</br>
 xueivulp ares revih'l</p>
 
-<h2> Réponse </h2>
+<h2>Exercice 5 : Réponse </h2>
+
 <% for (int i = chaine.length() - 1; i >= 0; i--) { %>
     <%= chaine.charAt(i) %>
 <% } %>
@@ -101,7 +108,12 @@ xueivulp ares revih'l</p>
 <h2>Exercice 6 : Consonnes et voyelles</h2>
 <p>Ecrire le programme afin de compter les consonnes et les voyelles dans votre texte</p>
 
-<h2> Réponse </h2>
+<%-- Initialisation des compteurs --%>
+<% int nbVoyelles = 0; %>
+<% int nbConsonnes = 0; %>
+
+<h2>Exercice 6 : Réponse </h2>
+
 <% for (int i = 0; i < chaine.length(); i++) {
      char currentChar = Character.toLowerCase(chaine.charAt(i));
      if (Character.isLetter(currentChar)) {
@@ -112,6 +124,9 @@ xueivulp ares revih'l</p>
         }
      }
 } %>
+
+<p>Nombre de voyelles : <%= nbVoyelles %></p>
+<p>Nombre de consonnes : <%= nbConsonnes %></p>
 
 <% } %>
 <p><a href="index.html">Retour au sommaire</a></p>
