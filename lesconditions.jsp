@@ -39,52 +39,44 @@ B = 20</br>
 C = 15</br>
 Oui C est compris entre A et B</p>
 
-<p>Partie Code : </p>
-    <%
-        String inputA = request.getParameter("A");
-        String inputB = request.getParameter("B");
-        String inputC = request.getParameter("C");
+<%-- Récupération des valeurs --%>
+    <% String valeur1 = request.getParameter("valeur1"); %>
+    <% String valeur2 = request.getParameter("valeur2"); %>
+    <% String valeur3 = request.getParameter("valeur3"); %>
 
-        if (inputA != null && inputB != null && inputC != null) {
-            int A = Integer.parseInt(inputA);
-            int B = Integer.parseInt(inputB);
-            int C = Integer.parseInt(inputC);
+    <%-- Vérification de la condition entre les deux valeurs --%>
+    <% if (valeur1 != null && valeur2 != null) { %>
+        <%-- Conversion des valeurs en entiers pour la comparaison --%>
+        <% int V1 = Integer.parseInt(valeur1); %>
+        <% int V2 = Integer.parseInt(valeur2); %>
+        <% int V3 = Integer.parseInt(valeur3); %>
 
-            if (C >= A && C <= B) {
-    %>
-                <p>Oui C est compris entre A et B</p>
-    <%
-            } else {
-    %>
-                <p>Non C n'est pas compris entre A et B</p>
-    <%
-            }
-        }
-    %>
+<%    
+    if( V3>V1 && V3<V2){
+out.println("<br>");
+out.println("<br>");
+    out.print("Le nombre C est compris entre A et B");
+}else{
+out.println("<br>");
+out.println("<br>");
+    out.print("Le nombre C n'est pas compris entre A et B gnegnegne");
+}
+%>
 
 <h2>Exercice 2 : Pair ou Impair ?</h2>
 <p>Écrivez un programme pour vérifier si un nombre est pair ou impair en utilisant une structure if</p>
 
-<p>Partie Code : </p>
-    <%
-        String inputNumber = request.getParameter("number");
-
-        if (inputNumber != null) {
-            int number = Integer.parseInt(inputNumber);
-
-            if (number % 2 == 0) {
-    %>
-                <p>Le nombre saisi est Pair</p>
-    <%
-            } else {
-    %>
-                <p>Le nombre saisi est Impair</p>
-    <%
-            }
-        }
-    %>
-
+<%
+if(V3%2==0){
+    out.println("<br>");
+    out.println("<Le nombre est paire");
+}else{
+    out.println("<br>");
+    out.println("le nombre est impaire");
+}
+%>
 <% } %>
+
 <p><a href="index.html">Retour au sommaire</a></p>
 </body>
 </html>
