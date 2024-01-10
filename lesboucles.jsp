@@ -31,7 +31,7 @@
 <p>*****</br>*****</br>*****</br>*****</br>*****</p>
 
 <p>
-Partie Code : <br/>
+Réponse : <br/>
 <%
     for (int i = 1; i <= cpt; i++) {
         for (int j = 1; j <= cpt; j++) {
@@ -48,7 +48,7 @@ Partie Code : <br/>
 <p>*</br>**</br>***</br>****</br>*****</p>
 
 <p>
-Partie Code : <br/>
+Réponse : <br/>
 <% for (int i = 1; i <= cpt; i++) { %>
     <% for (int f = 1; f <= i; f++) { %>
         <%= "*" %>
@@ -63,7 +63,7 @@ Partie Code : <br/>
 <p>*****</br>****</br>***</br>**</br>*</p>
 
 <p>
-Partie Code : <br/>
+Réponse : <br/>
 <%
 for (int i = cpt; i > 0; i--) {
     for (int f = 0; f < i; f++) {
@@ -80,7 +80,7 @@ for (int i = cpt; i > 0; i--) {
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**</br>&nbsp;&nbsp;&nbsp;&nbsp;***</br>&nbsp;&nbsp;****</br>*****</p>
 
 <p>
-Partie Code : <br/>
+Réponse : <br/>
 <%
 for (int i = 1; i <= cpt; i++) {
     for (int s = cpt - i; s > 0; s--) {
@@ -100,7 +100,7 @@ for (int i = 1; i <= cpt; i++) {
 <p>&nbsp;&nbsp;&nbsp;&nbsp;*</br>&nbsp;&nbsp;&nbsp;**</br>&nbsp;&nbsp;***</br>&nbsp;****</br>*****</p>
 
 <p>
-Partie Code : <br/>
+Réponse : <br/>
 <%
 for (int i = 1; i <= cpt; i++) {
     for (int s = cpt - i; s > 0; s--) {
@@ -121,7 +121,7 @@ for (int i = 1; i <= cpt; i++) {
 <p>*****</br>&nbsp;&nbsp;****</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*</p>
 
 p>
-Partie Code : <br/>
+Réponse : <br/>
 <%
 for (int i = 1; i <= cpt; i++) {
     for (int s = cpt - i; s > 0; s--) {
@@ -155,7 +155,7 @@ for (int i = cpt - 1; i > 0; i--) {
 <p>5 x 5 = 25</p>
 
 <p>
-Partie Code : <br/>
+Réponse : <br/>
 <%
 int multiplicateur = 5; // Remplacez par la valeur saisie par l'utilisateur
 
