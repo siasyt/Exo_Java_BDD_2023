@@ -18,7 +18,6 @@
 
     // Établir la connexion
     Connection conn = DriverManager.getConnection(url, user, password);
-
     // Exemple de requête SQL
     String sql = "SELECT idFilm, titre, année FROM Film WHERE année >= 2000";
     PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -34,15 +33,17 @@
         out.println("id : " + colonne1 + ", titre : " + colonne2 + ", année : " + colonne3 + "</br>");
     }
 
-    catch (SQLException e) {
-        e.printStackTrace();
-    }
+    // Fermer les ressources 
+    rs.close();
+    pstmt.close();
+    conn.close();
     %>
 
     <h2>Exercice 1 : Les films entre 2000 et 2015</h2>
     <p>Extraire les films dont l'année est supérieur à l'année 2000 et inférieur à 2015.</p>
+
     <h1>Réponse Ex1</h1>
-    <% 
+    <%
     // Re-utiliser la connexion existante
     String sql1 = "SELECT idFilm, titre, année FROM Film WHERE année >= 2000 AND année <= 2015";
     PreparedStatement pstmt1 = conn.prepareStatement(sql1);
@@ -56,19 +57,23 @@
         out.println("id : " + colonne1 + ", titre : " + colonne2 + ", année : " + colonne3 + "</br>");
     }
 
+    // Fermer les ressources 
     rs1.close();
     pstmt1.close();
     %>
 
     <h2>Exercice 2 : Année de recherche</h2>
     <p>Créer un champ de saisie permettant à l'utilisateur de choisir l'année de sa recherche.</p>
+
     <form action="#" method="post">
         <label for="inputAnnee">Saisir une année :</label>
         <input type="text" id="inputAnnee" name="annee">
         <input type="submit" value="Rechercher">
     </form>
+
     <%
     String anneeRecherche = request.getParameter("annee");
+
     if (anneeRecherche != null && !anneeRecherche.isEmpty()) {
         String sql2 = "SELECT idFilm, titre, année FROM Film WHERE année = ?";
         PreparedStatement pstmt2 = conn.prepareStatement(sql2);
@@ -90,16 +95,18 @@
     %>
 
     <h2>Exercice 3 : Modification du titre du film</h2>
-    <p>Créer un fichier permettant de modifier le titre d'un film sur la base de son ID (ID choisi par l'utilisateur)</p>
+    <p>Créer un formulaire permettant de modifier le titre d'un film sur la base de son ID (ID choisi par l'utilisateur)</p>
+
     <form action="#" method="post">
         <label for="inputIdFilm">ID du film :</label>
-        <input type="text" id="inputIdFilm" name="idFilm">
+        <input type="text" id="inputIdFilm" name="idFilmAModifier">
         <label for="inputNouveauTitre">Nouveau titre :</label>
         <input type="text" id="inputNouveauTitre" name="nouveauTitre">
-        <input type="submit" value="Modifier">
+        <input type="submit" value="Modifier le titre">
     </form>
+
     <%
-    String idFilmAModifier = request.getParameter("idFilm");
+    String idFilmAModifier = request.getParameter("idFilmAModifier");
     String nouveauTitre = request.getParameter("nouveauTitre");
 
     if (idFilmAModifier != null && nouveauTitre != null && !idFilmAModifier.isEmpty() && !nouveauTitre.isEmpty()) {
@@ -111,27 +118,29 @@
         int rowsAffected = pstmt3.executeUpdate();
 
         if (rowsAffected > 0) {
-            out.println("<p>Modification du titre réussie pour le film avec l'ID " + idFilmAModifier + "</p>");
+            out.println("<p>Modification du titre du film avec l'ID " + idFilmAModifier + " effectuée avec succès.</p>");
         } else {
-            out.println("<p>Aucun film trouvé avec l'ID " + idFilmAModifier + "</p>");
+            out.println("<p>Aucun film trouvé avec l'ID " + idFilmAModifier + ". Aucune modification effectuée.</p>");
         }
 
         pstmt3.close();
     }
     %>
 
-    <h2>Exercice 4 : La valeur maximum</h2>
-    <p>Créer un formulaire pour saisir un nouveau film dans la base de données</p>
+    <h2>Exercice 4 : Ajout d'un nouveau film</h2>
+    <p>Créer un formulaire permettant d'ajouter un nouveau film (titre et année saisis par l'utilisateur).</p>
+
     <form action="#" method="post">
-        <label for="inputTitre">Titre :</label>
-        <input type="text" id="inputTitre" name="titre">
-        <label for="inputAnneeFilm">Année :</label>
-        <input type="text" id="inputAnneeFilm" name="anneeFilm">
-        <input type="submit" value="Ajouter">
+        <label for="inputNouveauTitreFilm">Titre du nouveau film :</label>
+        <input type="text" id="inputNouveauTitreFilm" name="nouveauTitreFilm">
+        <label for="inputNouvelleAnneeFilm">Année du nouveau film :</label>
+        <input type="text" id="inputNouvelleAnneeFilm" name="nouvelleAnneeFilm">
+        <input type="submit" value="Ajouter le nouveau film">
     </form>
+
     <%
-    String nouveauTitreFilm = request.getParameter("titre");
-    String nouvelleAnneeFilm = request.getParameter("anneeFilm");
+    String nouveauTitreFilm = request.getParameter("nouveauTitreFilm");
+    String nouvelleAnneeFilm = request.getParameter("nouvelleAnneeFilm");
 
     if (nouveauTitreFilm != null && nouvelleAnneeFilm != null && !nouveauTitreFilm.isEmpty() && !nouvelleAnneeFilm.isEmpty()) {
         String sql4 = "INSERT INTO Film (titre, année) VALUES (?, ?)";
@@ -139,17 +148,18 @@
         pstmt4.setString(1, nouveauTitreFilm);
         pstmt4.setString(2, nouvelleAnneeFilm);
 
-        int rowsAffected4 = pstmt4.executeUpdate();
+        int rowsAffected = pstmt4.executeUpdate();
 
-        if (rowsAffected4 > 0) {
-            out.println("<p>Ajout du film réussi avec titre : " + nouveauTitreFilm + " et année : " + nouvelleAnneeFilm + "</p>");
+        if (rowsAffected > 0) {
+            out.println("<p>Ajout du nouveau film \"" + nouveauTitreFilm + "\" effectué avec succès.</p>");
         } else {
-            out.println("<p>Erreur lors de l'ajout du film.</p>");
+            out.println("<p>Erreur lors de l'ajout du nouveau film. Aucune modification effectuée.</p>");
         }
 
         pstmt4.close();
     }
     %>
+
 
 </body>
 </html>
