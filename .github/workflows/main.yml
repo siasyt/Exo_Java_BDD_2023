@@ -7,7 +7,7 @@ jobs:
     steps:
     - uses: actions/checkout@master
     - run: |
-          jar cvf TANGShiyu.war *
+          jar cvf TANGShiyun.war *
     - name: copy file via ssh password
       uses: appleboy/scp-action@master
       with:
