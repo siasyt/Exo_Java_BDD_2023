@@ -51,7 +51,7 @@
                 pstmtExercice2.setInt(1, anneeInt);
                 ResultSet rsExercice2 = pstmtExercice2.executeQuery();
 
-                out.println("<h2>Résultats de la recherche pour l'année " + anneeRecherche + "</h2>");
+                out.println("<h2>Exercice 2 : Résultats de la recherche pour l'année " + anneeRecherche + "</h2>");
 
                 while (rsExercice2.next()) {
                     String colonne1 = rsExercice2.getString("idFilm");
@@ -86,16 +86,8 @@
         <label for="nouveauTitre">Titre du nouveau film :</label>
         <input type="text" id="nouveauTitre" name="nouveauTitre" required>
         <label for="nouvelleAnnee">Année du nouveau film :</label>
-        <input type="text" id="nouvelleAnnee" name="nouvelleAnnee" required>
-        <button type="submit">Ajouter</button>
-    </form>
+        <input type="text" id="nouvelle
 
-    <%
-        // Fermer la connexion
-        conn.close();
-    %>
-</body>
-</html>
 
 
 
