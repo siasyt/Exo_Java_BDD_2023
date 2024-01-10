@@ -40,18 +40,7 @@
     %>
 
 <h2>Exercice 1 : Les films entre 2000 et 2015</h2>
-    <ul>
-    <%
-        while (rsExercice1.next()) {
-            int idFilm = rsExercice1.getInt("idFilm");
-            String titre = rsExercice1.getString("titre");
-            int annee = rsExercice1.getInt("année");
-    %>
-        <li>ID : <%= idFilm %>, Titre : <%= titre %>, Année : <%= annee %></li>
-    <%
-        }
-    %>
-    </ul>
+<p>Extraire les films dont l'année est supérieur à l'année 2000 et inférieur à 2015.</p>
 
 <h2>Exercice 2 : Année de recherche</h2>
 <p>Créer un champ de saisie permettant à l'utilisateur de choisir l'année de sa recherche.</p>
